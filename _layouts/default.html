@@ -11,8 +11,7 @@
     {% if site.description %}<meta name="description" content="{{ site.description }}">{% endif %}  
 
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | absolute_url }}?{{ site.time | date: '%s%N' }}">
-
-    <link rel="apple-touch-icon" href="{{ site.icon }}">
+    <link rel="icon" type="image/x-icon" href="{{ site.icon }}">
 
     {%- if jekyll.environment == 'production' and site.google_analytics -%}
       {%- include google-analytics.html -%}
