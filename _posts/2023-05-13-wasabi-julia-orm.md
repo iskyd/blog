@@ -25,4 +25,10 @@ Wasabi provide a powerfull query builder to perform select queries without writi
 
 **MIGRATIONS**
 
-Wasabi also provide out of the box a Mirgation service to manage database upgrade/downgrade.
+Wasabi also provide out of the box a Mirgation service to manage database upgrade/downgrade. This is essential for startup projects that needs to change over time and over market experience.
+
+**WHAT'S NEXT**
+
+There are two main things I want to improve in the next weeks
+1. Support previous version of Julia using [Requiers.jl](https://github.com/JuliaPackaging/Requires.jl)
+2. Add update and delete query support in query builder

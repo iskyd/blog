@@ -20,9 +20,15 @@
   text-align: center;
 }
 
+p:has(strong) {
+  text-indent: 0!important;
+}
+
 .post p {
   text-align: justify;
+  text-indent: 1.5em;
   text-justify: inter-word;
+  margin-bottom: 15px;
 }
 
 .post p:first-of-type,
