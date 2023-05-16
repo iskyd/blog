@@ -10,7 +10,7 @@ Wasabi is a simple yet powerful ORM for the Julia Language that currently suppor
 
 There are 3 main reasons why I decided to start this project few months ago:
 1. I dind't find any available library for Julia written with Domain Driven Design in mind. I always want to rely on my domain object. BTW I have found an amazing project that act as query DSL called [Octo.jl](https://github.com/wookay/Octo.jl). Another ORM that I've found is [SearchLight](https://github.com/GenieFramework/SearchLight.jl) as part of the GenieFramework
-2. I'm starting a new project and I want to build a microservices architecture using Julia. An ORM could help me reduce errors, don't rely on a specific database implementation and faster iteration. I want to be able to change backend database simply changing some environment variables.
+2. I'm starting a new project and I want to build a microservices architecture using Julia. An ORM could help me reduce errors, don't rely on a specific database implementation and have faster iterations. I want to be able to change backend database by simply changing some environment variables.
 3. The crime level in Gotham has dropped so I found myself with a lot of free time and I want to have fun.
 
 **WASABI**
