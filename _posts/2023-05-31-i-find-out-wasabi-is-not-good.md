@@ -5,11 +5,16 @@ title: I find out that Wasabi is not good ... yet
 
 [Wasabi](https://github.com/iskyd/Wasabi.jl) is a simple ORM for the Julia Language. You can read more [here](https://iskyd.github.io/blog/2023/05/13/wasabi-julia-orm.html).
 
-When I started developing Wasabi I have one main goal: rely on my domain object instead of the database representation. A lot of ORMs "force" you to think of your database representation and use that object als as your domain object. Of course you can apply a conversion from and between your domain object and your database representation but that's an overhead and in my experience almost no-one do this. In my career I've worked mainly with Doctrine (PHP) and SQLAlchemy (Python). I find the first one of the best ORM to ever interact with but in both case you almost always overlapp your database representation and you're domain object. 
+When I started developing Wasabi I have one main goal: rely on my domain object instead of the database representation. A lot of ORMs "force" you to think of your database representation and use that object also as your domain object. Of course you can apply a conversion between your domain object and your database representation but that's an overhead and in my experience almost no-one do this. In my career I've worked mainly with Doctrine (PHP) and SQLAlchemy (Python). I find Doctrine one of the best ORM to ever interact with but in both case you almost always overlapp your database representation and you're domain object. 
 
-They're both ORM for an object oriented programming language: Julia on the other way is not an object oriented programming language so we can't rely on class attributes and methods definition to implement some behaviour but we have to rely on multiple dispatch.
+They're both ORM for an object oriented programming language: Julia on the other way is not an object oriented programming language so we can't rely on class attributes and methods definition to implement the behaviour, but we have to rely on multiple dispatch.
 
-The main issue with this approach is that a database modification (renamed column, deleted column ...) often prevents you doing blue/green deployment because ORM can't apply the needed conversion for you. I want to avoid that and in Julia using multiple dispatch you can instantiate an object in many different ways. Suppose you have a User object with firstname and lastname column and you change that to just name column. You can still instantiate the "new" object using the old database structure.
+The main issues that come by overlapping database representation and domain object are:
+- Codes will become more complex and hard to mantain
+- Even a simple modification can require lot of working
+- database modifications often prevents you doing blue/green deployment
+ 
+In Julia using multiple dispatch you can instantiate an object in many different ways. Suppose you have a User object with firstname and lastname column and you change that to just name column. You can still instantiate the "new" object using the old database structure.
 
 ```
 struct User
@@ -24,7 +29,7 @@ User("John", "Doe")
 ```
 
 Under the hood the ORM can instantiate the object and the developer just need to provide a valid constructor for every states of the model.
-At the moment Wasabi use a method df2model to perform the conversion from the Dataframe (results from the database) to the model and converting types back and forth (for example you can have a String on database the is a DateTime in your model).
+At the moment Wasabi use a method df2model to perform the conversion from the Dataframe (results from the database) to the model and converting types back and forth (for example you can have a String on database that is a DateTime in your model).
 You can use multiple dispatch directly on the constructor or you can also override directly the df2model method for more complex scenarios. This way you provide an explicit conversion between your domain object and the database.
 
 So what's wrong at the moment? The main issue I've found is models with relations. Suppose that User has some roles implemented by the Role model:
