@@ -52,7 +52,7 @@ Than I just added them inside build.zig as modules.
 
 #### Conclusion
 
-Even if Zig is not a simple language and the documentation is not complete I find the community really helpfull and I find the language amazing and explicit. I loved think about compilation, memory allocation, optimization and so on.
+Even if Zig is not a simple language and the documentation is not complete I find the community really helpfull and I find the language amazing and explicit. I loved about compilation, memory allocation, optimization and so on.
 
 The mathematical concepts behind Bitcoin are not easy but that's the best part.
 
