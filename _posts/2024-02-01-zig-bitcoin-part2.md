@@ -18,6 +18,13 @@ This time I've worked with aes and scrypt in order to implement bip38 specs. The
 https://github.com/ziglang/zig/issues/5763).
 You can find my implementation of Bip 38 [here](https://github.com/iskyd/walle/blob/main/src/bip38/bip38.zig). As of today there is a big major issue in my code: passphrase is not passed as bytes but as a string to the scrypt algorithm. This is due to the fact that trying to convert a string to bytes using std.mem.asBytes results in some sort of random behaviour that I have not yet checked.
 
+#### build.zig
+During the development of bip 38 I needed to run tests a lot of times. Using zig build test I can execute all the tests, but I just want to run the tests specified in some files. Apparently there is no way to specify the files as args using zig build test. I can run single test using zig test commmand, but I have to link everything manually, so this would have been result in a Makefile, which I really don't want :)
+Here's come the power of the zig build system: you can implement yourself this behaviour using the build.zig in few lines of code.
+I have a unit_test.zig file that is the default one used by zig build test that includes all the tests. Otherwise you can specify as args the files that contains the tests. This way everything is declared inside the build.zig file and you can just run ```zig build test -- src/bip38/bip38.zig``` in order to execute only the bip 38 tests. [Here](https://github.com/iskyd/walle/blob/main/build.zig) you can find my implementation of build.zig.
+
+
+
 #### Next steps
 
 I need to fix the Bip 38 implementation using the passphrase as bytes and try to compare results with other implementation to garantuee the usability.
