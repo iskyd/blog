@@ -16,7 +16,7 @@ As you can see the steps to encrypt and decrypt a private key without EC multipl
 This implementation forces me to dive deep in the crypto code in the std lib and well, it's a crap. I've started looking in the crypto lib when using secp256k1 (prev article), but I didn't find a way to get it working so I [wrote my implementation of secp256k1](https://github.com/iskyd/walle/blob/main/src/secp256k1/secp256k1.zig).
 This time I've worked with aes and scrypt in order to implement bip38 specs. The code of both lib is not clear and tests are not complete. I want also to point out that at the time of writing the crypto code inside the zig std lib has not been audited by a security expert. [There will be an audit before 1.0 release](
 https://github.com/ziglang/zig/issues/5763).
-You can find my implementation of Bip 38 [here](https://github.com/iskyd/walle/blob/main/src/bip38/bip38.zig). As of today there is a big major issue in my code: passphrase is not passed as bytes but as a string to the scrypt algorithm. This is due to the fact that trying to convert a string to bytes using std.mem.asBytes results in some sort of random behaviour that I have not yet checked.
+You can find my implementation of Bip 38 [here](https://github.com/iskyd/walle/blob/main/src/bip38/bip38.zig). As of today there is a big major issue in my code: it doesn't return the same result as other implementation I've tried.
 
 #### build.zig
 During the development of bip 38 I needed to run tests a lot of times. Using zig build test I can execute all the tests, but I just want to run the tests specified in some files. Apparently there is no way to specify the files as args using zig build test. I can run single test using zig test commmand, but I have to link everything manually, so this would have been result in a Makefile, which I really don't want :)
@@ -27,7 +27,7 @@ I have a unit_test.zig file that is the default one used by zig build test that 
 
 #### Next steps
 
-I need to fix the Bip 38 implementation using the passphrase as bytes and try to compare results with other implementation to garantuee the usability.
+I need to fix the Bip 38 implementation and try to compare results with other implementation to garantuee the usability.
 Next I'm going to implement transactions and transaction signature, in particular I want to implement a multisig transaction where m of n keys are required to move the funds.
 Also I'm going to try to make walle usable via cli so that anyone can try it.
 
