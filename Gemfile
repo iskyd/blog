@@ -5,3 +5,4 @@ gem "kramdown-parser-gfm"
 gemspec
 
 gem "webrick", "~> 1.8"
+gem "no-style-please"
