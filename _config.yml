@@ -1,19 +1,18 @@
-title: Hello
+title: Byte Me, Maybe?
 email: iskyd@proton.me
-description: 
+description: >-
+  As Batman once said, 'Why so serious?'
 baseurl: "/blog"
 url: "https://iskyd.github.io"
 icon: /blog/assets/images/favicon.ico
 github_username:  iskyd
 
-# markdown: kramdown
+markdown: kramdown
 
-# plugins:
-#   - jekyll-paginate
-# 
-# paginate: 5
-# paginate_path: "/page/:num/"
+plugins:
+  - jekyll-paginate
 
-theme: no-style-please
+paginate: 5
+paginate_path: "/page/:num/"
 
 hide_search: true
